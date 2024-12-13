@@ -17,3 +17,16 @@ fi
 
 # Version de Python (par défaut python3)
 python_version="${2:-python3}"
+
+# Vérifie si le fichier existe déjà
+if [ -e "$filename" ]; then
+    echo "Erreur : Le fichier '$filename' existe déjà."
+    exit 2
+fi
+
+# Crée le fichier avec le shebang pour Python
+echo "#!/usr/bin/env $python_version" > "$filename"
+echo "" >> "$filename"
+
+# Rend le fichier exécutable
+chmod +x "$filename"
